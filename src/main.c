@@ -19,6 +19,7 @@ int main(void) {
 
         // tronc
         DrawTronc(tronc, feuillage);
+        getchar();
 
         printf("\nRecommancer (o/n)?" CYAN "\n>>" RESET);
         scanf("%c", &ch);
@@ -35,8 +36,8 @@ int main(void) {
                 printf(ROUGE "choix pas pris en compte\n" RESET);
                 break;
         }
-        pauseScreen();
+        
     }
-
+    pauseScreen();
     return 0;
 }
