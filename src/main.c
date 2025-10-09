@@ -1,35 +1,41 @@
-#include <stdio.h>
+#include "..\include\sapin.h"
 
 int main(void) {
-    int hauteur, feuillage, tronc;
+    int hauteur, feuillage, tronc, run, ch;
 
-    printf("Entrez la hauteur totale du sapin : ");
-    scanf("%d", &hauteur);
+    while (run !=0)
+    {
+        clearScreen();
+        printf("Entrez la hauteur totale du sapin : ");
+        scanf("%d", &hauteur);
+        run = 1;
 
-    // Calcul des proportions
-    feuillage = (hauteur * 3) / 4;
-    tronc = hauteur - feuillage;
+        // Calcul des proportions
+        feuillage = (hauteur * 3) / 4;
+        tronc = hauteur - feuillage;
 
-    // Feuilles
-    for (int i = 0; i < feuillage; i++) {
-        
-        for (int j = 0; j < feuillage - i - 1; j++) {
-            putchar(' ');
+        // Feuilles
+        DrawFeuillage(feuillage);
+
+        // tronc
+        DrawTronc(tronc, feuillage);
+
+        printf("\nRecommancer (o/n)?" CYAN "\n>>" RESET);
+        scanf("%c", &ch);
+        switch (ch)
+        {
+            case 'o': case 'O':
+                run = 1;
+                break;
+            case 'n': case 'N':
+                run = 0;
+                break;
+            
+            default:
+                printf(ROUGE "choix pas pris en compte\n" RESET);
+                break;
         }
-
-        for (int k = 0; k < 2 * i + 1; k++) {
-            putchar('*');
-        }
-        putchar('\n');
-    }
-
-    // tronc
-    for (int i = 0; i < tronc; i++) {
-        for (int j = 0; j < feuillage - 1; j++) {
-            putchar(' ');
-        }
-        printf("|||");
-        putchar('\n');
+        pauseScreen();
     }
 
     return 0;
